@@ -1,0 +1,58 @@
+var
+A: matriz[*,*]numerico
+C: matriz[*,*]numerico
+a,b,k,i,cnt,porcentaje: numerico
+aa,bb:numerico
+esparza,nonull:logico
+
+inicio
+cls()
+imprimir("Introduzca la cantidad de filas y columnas de la matriz:","\n")
+leer(a,b)
+dim(A,a,b)
+imprimir("Introduzca los elementos de la matriz:","\n")
+leer(A)
+
+
+//Contar de no nulos
+	desde k=1 hasta a{
+		desde i=1 hasta b{
+			si (A[k,i]<>0){
+					cnt=cnt+1;nonull=TRUE
+			}
+		}
+	}
+
+//C es la matriz comprimida
+si (esparza==TRUE){
+	dim(C,(cnt+1),3)
+
+		desde k=1 hasta a{
+			desde i=1 hasta b{
+				si (A[k,i]<>0){
+				nonull=TRUE
+		C[1,1]=a;C[2,1]=b;C[3,1]=cnt
+		desde aa=2 hasta (cnt+1){
+			desde bb=1 hasta 3{
+				si (bb==1 and nonull==TRUE){C[aa,bb]=k}
+				si (bb==1 and nonull==TRUE){C[aa,bb]=i}
+				si (bb==1 and nonull==TRUE){C[aa,bb]=A[k,i]}
+				}
+			}
+		}	
+	}
+	}
+}
+
+
+porcentaje=(a*b)*(75/100)
+si((porcentaje)>(cnt)){
+	esparza=TRUE
+	imprimir("\n","La matriz es esparza","\n")
+sino imprimir("\n","La matriz no es esparza","\n")
+}
+
+imprimir("\n","La matriz comprimida:","\n")
+imprimir(C)
+
+fin	
